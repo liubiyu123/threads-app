@@ -21,6 +21,7 @@ import { Textarea } from "@/components/ui/textarea";
 
 import { useUploadThing } from "@/lib/useUploadThing";
 import { isBase64Image } from "@/lib/utils";
+
 import { UserValidation } from "@/lib/validations/user";
 import { updateUser } from "@/lib/actions/user.actions";
 
@@ -55,7 +56,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
 
   const onSubmit = async (values: z.infer<typeof UserValidation>) => {
     const blob = values.profile_photo;
-
+    console.log("Form Values:", values);
     const hasImageChanged = isBase64Image(blob);
     if (hasImageChanged) {
       const imgRes = await startUpload(files);
@@ -79,6 +80,8 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
     } else {
       router.push("/");
     }
+
+    
   };
 
   const handleImage = (
@@ -103,7 +106,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
       fileReader.readAsDataURL(file);
     }
   };
-  
+
   return (
     <Form {...form}>
       <form
