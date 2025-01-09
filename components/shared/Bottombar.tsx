@@ -5,14 +5,27 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import { sidebarLinks } from "@/constants";
+import { useUser } from "@clerk/nextjs";
 
 function Bottombar() {
   const pathname = usePathname();
+  const { user } = useUser(); // Retrieve the logged-in user's details
+
+  // Generate dynamic profile link
+  const linksWithProfile = sidebarLinks.map((link) => {
+    if (link.route === "/profile") {
+      return {
+        ...link,
+        route: `/profile/${user?.id}`, // Use the user's ID dynamically
+      };
+    }
+    return link;
+  });
 
   return (
     <section className='bottombar'>
       <div className='bottombar_container'>
-        {sidebarLinks.map((link) => {
+        {linksWithProfile.map((link) => {
           const isActive =
             (pathname.includes(link.route) && link.route.length > 1) ||
             pathname === link.route;

@@ -1,12 +1,12 @@
 import Image from "next/image";
-import { currentUser } from '@clerk/nextjs/server'
+import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
 import { profileTabs } from "@/constants";
 
-//import ThreadsTab from "@/components/shared/ThreadsTab";
+import ThreadsTab from "@/components/shared/ThreadsTab";
 import ProfileHeader from "@/components/shared/ProfileHeader";
-//import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import { fetchUser } from "@/lib/actions/user.actions";
 
@@ -28,7 +28,7 @@ async function Page({ params }: { params: { id: string } }) {
         bio={userInfo.bio}
       />
 
-      {/* <div className='mt-9'>
+      <div className='mt-9'>
         <Tabs defaultValue='threads' className='w-full'>
           <TabsList className='tab'>
             {profileTabs.map((tab) => (
@@ -56,7 +56,7 @@ async function Page({ params }: { params: { id: string } }) {
               value={tab.value}
               className='w-full text-light-1'
             >
-               @ts-ignore 
+              {/* @ts-ignore */}
               <ThreadsTab
                 currentUserId={user.id}
                 accountId={userInfo.id}
@@ -65,7 +65,7 @@ async function Page({ params }: { params: { id: string } }) {
             </TabsContent>
           ))}
         </Tabs>
-      </div> */}
+      </div>
     </section>
   );
 }
