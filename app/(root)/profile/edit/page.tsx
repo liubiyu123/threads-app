@@ -15,7 +15,7 @@ async function Page() {
 
   const userData = {
     id: user.id,
-    objectId: userInfo?._id,
+    objectId: userInfo?._id?.toString(), // Convert ObjectId to a string
     username: userInfo ? userInfo?.username : user.username,
     name: userInfo ? userInfo?.name : user.firstName ?? "",
     bio: userInfo ? userInfo?.bio : "",
@@ -24,11 +24,11 @@ async function Page() {
 
   return (
     <>
-      <h1 className='head-text'>Edit Profile</h1>
-      <p className='mt-3 text-base-regular text-light-2'>Make any changes</p>
+      <h1 className="head-text">Edit Profile</h1>
+      <p className="mt-3 text-base-regular text-light-2">Make any changes</p>
 
-      <section className='mt-12'>
-        <AccountProfile user={userData} btnTitle='Continue' />
+      <section className="mt-12">
+        <AccountProfile user={userData} btnTitle="Continue" />
       </section>
     </>
   );
